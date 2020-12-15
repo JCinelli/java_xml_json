@@ -1,4 +1,4 @@
-package java_xml_json.entities;
+package java_xml_json.entities.old;
 
 import java.util.ArrayList;
 import java.util.List;

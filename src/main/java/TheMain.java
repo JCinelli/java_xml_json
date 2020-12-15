@@ -1,32 +1,47 @@
 import java.io.File;
+import java.time.LocalDate;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import java_xml_json.entities.Datas;
-import java_xml_json.entities.Pays;
+import java_xml_json.entities.news.Datas;
+import java_xml_json.entities.old.Pays;
 
 public class TheMain {
 
 	public static void main(String[] args) throws JAXBException {
 		
-		JAXBContext jc = JAXBContext.newInstance(Datas.class);
+//		JAXBContext jc = JAXBContext.newInstance(Datas.class);
+//		
+//		Unmarshaller unmarshaller = jc.createUnmarshaller();
+//		
+//		Datas datas = (Datas) unmarshaller.unmarshal(new File("C:\\Users\\jerem\\OneDrive\\Bureau\\XML - JSON\\Tp1 - XML.xml"));
+//		
+//		for (Pays p : datas.getPays()) {
+//			System.err.println("------------------------------------------------");
+//			System.out.println("NOM DU PAYS => " + p.getNom());
+//			System.out.println("DATE DE RELEVE => " + p.getDateDeReleve());
+//			System.out.println("FECONDITE => " + p.getDonneesDemographiques().getFecondite().getValue() + " (" + p.getDonneesDemographiques().getFecondite().getUnite() + ") ");
+//			System.out.println("POPULATION => " + p.getDonneesDemographiques().getPopulation().getValue() + " (" + p.getDonneesDemographiques().getPopulation().getUnite() + ") ");
+//			System.out.println("MONNAIE => " + p.getDonneesEconomiques().getMonnaie());
+//			System.out.println("PIB =>" + p.getDonneesEconomiques().getPib().getValue() + " (" + p.getDonneesEconomiques().getPib().getUnite() + ") ");
+//			System.err.println("------------------------------------------------");
+//		}
 		
-		Unmarshaller unmarshaller = jc.createUnmarshaller();
+		JAXBContext jc = JAXBContext.newInstance(Pays.class);
 		
-		Datas datas = (Datas) unmarshaller.unmarshal(new File("C:\\Users\\jerem\\OneDrive\\Bureau\\XML - JSON\\Tp1 - XML.xml"));
+		Marshaller marshaller = jc.createMarshaller();
 		
-		for (Pays p : datas.getLesPays()) {
-			System.err.println("------------------------------------------------");
-			System.out.println("NOM DU PAYS => " + p.getNom());
-			System.out.println("DATE DE RELEVE => " + p.getDateDeReleve());
-			System.out.println("FECONDITE => " + p.getDonneesDemographiques().getFecondite().getFecondite() + " (" + p.getDonneesDemographiques().getFecondite().getUnite() + ") ");
-			System.out.println("POPULATION => " + p.getDonneesDemographiques().getPopulation().getPopulation() + " (" + p.getDonneesDemographiques().getPopulation().getUnite() + ") ");
-			System.out.println("MONNAIE => " + p.getDonneesEconomique().getMonnaie());
-			System.out.println("PIB =>" + p.getDonneesEconomique().getPib().getPib() + " (" + p.getDonneesEconomique().getPib().getUnite() + ") ");
-			System.err.println("------------------------------------------------");
-		}
+		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+		
+		Pays livres = new Pays();
+		livres.setNom("Bulgarie");
+		livres.setDateDeReleve(LocalDate.now());
+		
+		File os = new File ( "C:/xml/pays_out.xml" );
+		marshaller.marshal(livres, os);
 
 	}
 
