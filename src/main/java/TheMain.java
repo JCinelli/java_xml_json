@@ -36,12 +36,12 @@ public class TheMain {
 		
 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 		
-		Pays livres = new Pays();
-		livres.setNom("Bulgarie");
-		livres.setDateDeReleve(LocalDate.now());
+		Pays pays1 = new Pays();
+		pays1.setNom("Bulgarie");
+		pays1.setDateDeReleve(LocalDate.now());
 		
 		File os = new File ( "C:/xml/pays_out.xml" );
-		marshaller.marshal(livres, os);
+		marshaller.marshal(pays1, os);
 
 	}
 
