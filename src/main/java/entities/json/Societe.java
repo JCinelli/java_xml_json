@@ -1,5 +1,6 @@
 package entities.json;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Societe {
@@ -9,6 +10,10 @@ public class Societe {
 	private List<Fondateur> fondateurs;
 	private List<ChiffreAffaire> chiffreAffaires;
 	
+	public Societe() {
+		this.fondateurs = new ArrayList<>();
+		this.chiffreAffaires = new ArrayList<>();
+	}
 	public String getNom() {
 		return nom;
 	}

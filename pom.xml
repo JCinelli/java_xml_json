@@ -8,6 +8,25 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.jsonschema2pojo</groupId>
+				<artifactId>jsonschema2pojo-maven-plugin</artifactId>
+				<version>1.0.2</version>
+				<configuration>
+					<sourceDirectory>C:\Users\jerem\OneDrive\Bureau\XML - JSON\JSON\Tp01-json.json</sourceDirectory><!-- Emplacement de mon fichier json -->
+					<targetPackage>fr.diginamic.jsonschema.beans</targetPackage><!-- Le package qu'il doit ma creer -->
+					<outputDirectory>C:/temp/output</outputDirectory><!-- ou il le cree -->
+					<sourceType>json</sourceType>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.0</version>
 				<configuration>
